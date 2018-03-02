@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.applicationcontext.dao.DlUserMapper">
+  <resultMap id="BaseResultMap" type="com.example.applicationcontext.entity.DlUser">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_CODE" jdbcType="VARCHAR" property="userCode" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_GENDER" jdbcType="CHAR" property="userGender" />
+    <result column="BIRTHDAY" jdbcType="DATE" property="birthday" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="PASSWORD_SALT" jdbcType="VARCHAR" property="passwordSalt" />
+    <result column="ORG_ID" jdbcType="INTEGER" property="orgId" />
+    <result column="POSITION_ID" jdbcType="BIGINT" property="positionId" />
+    <result column="TELPHONE" jdbcType="VARCHAR" property="telphone" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="PROVINCE_ID" jdbcType="VARCHAR" property="provinceId" />
+    <result column="CITY_ID" jdbcType="VARCHAR" property="cityId" />
+    <result column="AREA_ID" jdbcType="VARCHAR" property="areaId" />
+    <result column="USER_ADDRESS" jdbcType="VARCHAR" property="userAddress" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="STATUS" jdbcType="SMALLINT" property="status" />
+    <result column="IS_DELETE" jdbcType="SMALLINT" property="isDelete" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="MODIFIER" jdbcType="VARCHAR" property="modifier" />
+    <result column="MODIFY_TIME" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="DEALER_ID" jdbcType="BIGINT" property="dealerId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, USER_CODE, USER_NAME, USER_GENDER, BIRTHDAY, PASSWORD, PASSWORD_SALT, ORG_ID, 
+    POSITION_ID, TELPHONE, MOBILE, EMAIL, VERSION, PROVINCE_ID, CITY_ID, AREA_ID, USER_ADDRESS, 
+    PATH, STATUS, IS_DELETE, CREATER, CREATE_TIME, MODIFIER, MODIFY_TIME, DEALER_ID
+  </sql>
+  
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dl_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer">
+    delete from dl_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.example.applicationcontext.entity.DlUser">
+    insert into dl_user (ID, USER_CODE, USER_NAME, 
+      USER_GENDER, BIRTHDAY, PASSWORD, 
+      PASSWORD_SALT, ORG_ID, POSITION_ID, 
+      TELPHONE, MOBILE, EMAIL, 
+      VERSION, PROVINCE_ID, CITY_ID, 
+      AREA_ID, USER_ADDRESS, PATH, 
+      STATUS, IS_DELETE, CREATER, 
+      CREATE_TIME, MODIFIER, MODIFY_TIME, 
+      DEALER_ID)
+    values (#{id,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userGender,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, #{password,jdbcType=VARCHAR}, 
+      #{passwordSalt,jdbcType=VARCHAR}, #{orgId,jdbcType=INTEGER}, #{positionId,jdbcType=BIGINT}, 
+      #{telphone,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}, #{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, 
+      #{areaId,jdbcType=VARCHAR}, #{userAddress,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{status,jdbcType=SMALLINT}, #{isDelete,jdbcType=SMALLINT}, #{creater,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{dealerId,jdbcType=BIGINT})
+  </insert>
+  
+  <update id="update" parameterType="java.lang.Integer">
+    update dl_user
+    <set>
+      <if test="userCode != null">
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null">
+        USER_GENDER = #{userGender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="passwordSalt != null">
+        PASSWORD_SALT = #{passwordSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null">
+        ORG_ID = #{orgId,jdbcType=INTEGER},
+      </if>
+      <if test="positionId != null">
+        POSITION_ID = #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="telphone != null">
+        TELPHONE = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID = #{provinceId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        CITY_ID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        AREA_ID = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        USER_ADDRESS = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="isDelete != null">
+        IS_DELETE = #{isDelete,jdbcType=SMALLINT},
+      </if>
+      <if test="creater != null">
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null">
+        MODIFIER = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        MODIFY_TIME = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealerId != null">
+        DEALER_ID = #{dealerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
